@@ -1,13 +1,13 @@
 # Lab 3, Tyler Clough
 import numpy as np
+from fixedpt_example import fixedpt
 from bisection_example import bisection
 
-def print_bisection(f,a,b,tol):
-# prints results of bisection method
+def print_results(f,astar,ier,name='root'):
+# prints results of bisection/fixedpt algorithms
 
     print('------------------------')
-    [astar,ier] = bisection(f,a,b,tol)
-    print('the approximate root is',astar)
+    print('the approximate ',name,' is',astar)
     print('the error message reads:',ier)
     print('f(astar) =', f(astar))
 
@@ -23,7 +23,8 @@ def Q1():
     # chose tolerance so it doesn't break my Chromebook
     
     for int in [a_interval,b_interval,c_interval]:
-        print_bisection(f,int[0],int[1],tol)
+        [astar,ier] = bisection(f,int[0],int[1],tol)
+        print_results(f,astar,ier)
     # loops over each interval and prints results
 
 def Q2():
@@ -39,15 +40,17 @@ def Q2():
     # stuff given by problem statement
 
     for func,int in zip([f_a,f_b,f_c],[a_interval,b_interval,c_interval]):
-        print_bisection(func,int[0],int[1],tol)
+        [astar,ier] = bisection(func,int[0],int[1],tol)
+        print_results(func,astar,ier)
     # loops over each interval and prints results
-    print_bisection(f_c,0.5,3*np.pi/4,tol)
+    [astar,ier] = bisection(f_c,0.5,3*np.pi/4,tol)
+    print_results(f_c,astar,ier)
     # trys sin() again with diffferent interval
 
 def Q3():
 # code for Question 4-3
 
-    f_a = lambda x: x*(1+(7-x**5)/x**2)**3
+    f_a = lambda x: x*(1+(7-x**5)/(x**2))**3
     f_b = lambda x: x-(x**5-7)/(x**2)
     f_c = lambda x: x-(x**5-7)/(5*x**4)
     f_d = lambda x: x-(x**5-7)/12
@@ -62,7 +65,14 @@ def Q3():
     # verify fp is fixed point for all funcs
 
     tol = 10**(-10)
-    
-    
+    # tolerance
+    x0 = 1
+    # initial guess
+    for func in [f_a,f_b,f_c,f_d]:
+        try:
+            [astar, ier]=fixedpt(func,x0,tol,50)
+            print_results(func,astar,ier,'fixed point')
+        except:
+            print('error')
 
 Q3()
