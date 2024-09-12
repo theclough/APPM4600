@@ -1,12 +1,12 @@
 # Lab 3, Tyler Clough
 import numpy as np
+import matplotlib.pyplot as plt
 from fixedpt_example import fixedpt
 from bisection_example import bisection
 
 def print_results(f,astar,ier,name='root'):
 # prints results of bisection/fixedpt algorithms
 
-    print('------------------------')
     print('the approximate ',name,' is',astar)
     print('the error message reads:',ier)
     print('f(astar) =', f(astar))
@@ -68,7 +68,11 @@ def Q3():
     # tolerance
     x0 = 1
     # initial guess
+    xvals = np.linspace(0.75,1.25,100)
+    # for plotting functions
     for func in [f_a,f_b,f_c,f_d]:
+        #plt.plot(xvals,func(xvals),'bo')
+        #plt.show()
         try:
             [astar, ier]=fixedpt(func,x0,tol,50)
             print_results(func,astar,ier,'fixed point')

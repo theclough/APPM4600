@@ -8,6 +8,7 @@ def fixedpt(f,x0,tol,Nmax):
     ''' Nmax = max number of iterations'''
     ''' tol = stopping tolerance'''
 
+    print('--------------------')
     count = 0
     while (count <Nmax):
         count = count +1 
@@ -19,7 +20,7 @@ def fixedpt(f,x0,tol,Nmax):
                 return [xstar,ier]
             x0 = x1
         except:
-            print(x0)
+            print('error: ',x0)
             break
     xstar = x1
     ier = 1

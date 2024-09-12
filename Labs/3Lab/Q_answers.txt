@@ -1,4 +1,4 @@
-3)
+(3)
 
 What does the bisection method do?
 -It searches for zeros of a function by splitting the
@@ -11,6 +11,8 @@ What is requred for the method to work?
 What problem is the fixed point iteration trying to solve?
 -The fixed point iteration algorithm is searching for the
 intersection of a given function with the line y=x
+
+(4)
 
 4.1)
 
@@ -36,3 +38,8 @@ because one of the endpoints was already a root.
 
 4.3)
 
+The fixed point iteration converges only for (c). It converges for (c) because |f_c'| is
+not to large (like |f_a'| & |f_b'|) and not too small (like |f_d'|). As such, f_a and f_b
+do not converge because the algorithm blasts off to OFL due to the large slope around the
+fixed point and f_d never reaches the correct value because it's derivative is too small
+for the searching method in the algorithm to make significant progress.
