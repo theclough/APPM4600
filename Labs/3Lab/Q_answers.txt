@@ -12,7 +12,7 @@ What problem is the fixed point iteration trying to solve?
 -The fixed point iteration algorithm is searching for the
 intersection of a given function with the line y=x
 
-4)
+4.1)
 
 (a) the interval (0.5,2) finds the correct root of 1
 (b) the interval (-1,0.5) finds an incorrect root of -1
@@ -27,4 +27,12 @@ find a root = 0.
 (c) re-discovers the same endpoint as (a) becuase it just so happens that the
 midpoint of the interval (-1,2) is 1 which is a root
 
-5)
+4.2)
+
+The code was successful for (a) & (c.1) but unsuccessful for (b) and (c).
+(b) and (c.2) were unsuccessful because the starting endpoints have the same sign.
+(a) was successful because the endpoints had the same sign and (c1) was successful
+because one of the endpoints was already a root.
+
+4.3)
+

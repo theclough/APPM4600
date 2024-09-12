@@ -26,7 +26,7 @@ def Q1():
         print_bisection(f,int[0],int[1],tol)
     # loops over each interval and prints results
 
-def Q5():
+def Q2():
 # code for Question 4-2
 
     tol = 10**(-5)
@@ -44,4 +44,25 @@ def Q5():
     print_bisection(f_c,0.5,3*np.pi/4,tol)
     # trys sin() again with diffferent interval
 
-Q5()
+def Q3():
+# code for Question 4-3
+
+    f_a = lambda x: x*(1+(7-x**5)/x**2)**3
+    f_b = lambda x: x-(x**5-7)/(x**2)
+    f_c = lambda x: x-(x**5-7)/(5*x**4)
+    f_d = lambda x: x-(x**5-7)/12
+    # stuff given by problem statement
+
+    fp = 7**(1/5)
+    print(f_a(fp))
+    print(f_b(fp))
+    print(f_c(fp))
+    print(f_d(fp))
+    print(fp)
+    # verify fp is fixed point for all funcs
+
+    tol = 10**(-10)
+    
+    
+
+Q3()
