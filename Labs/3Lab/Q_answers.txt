@@ -1,0 +1,30 @@
+3)
+
+What does the bisection method do?
+-It searches for zeros of a function by splitting the
+interval in 1/2 until it finds one where the midpoint
+is less than a given tolerance
+
+What is requred for the method to work?
+-The initial endpoints must have different signs
+
+What problem is the fixed point iteration trying to solve?
+-The fixed point iteration algorithm is searching for the
+intersection of a given function with the line y=x
+
+4)
+
+(a) the interval (0.5,2) finds the correct root of 1
+(b) the interval (-1,0.5) finds an incorrect root of -1
+(c) the interval (-1,2) finds the same root as (a)
+
+(a) succeeds because the function is nice to the bisection
+method in the interval, i.e. the initial endpoints have different
+signs and the function in the interval is relatively linear
+(b) fails because the f(-1) and f(0.5) are both < 0 and so it spits
+out an error message, but this doesn't mean that the bisection method can't
+find a root = 0.
+(c) re-discovers the same endpoint as (a) becuase it just so happens that the
+midpoint of the interval (-1,2) is 1 which is a root
+
+5)
