@@ -1,0 +1,13 @@
+# Question answers
+
+2-2 
+(a)
+    It took 12 iterations to converge.
+(b)
+    *(from code)*
+    alpha = 1.0000542857740826
+    lambda = rate = 0.1273493443225916
+
+3
+(1)
+    Solving for p: p = (p_{n+1}^2)/(3*p_{n+1}-p_n-p_{n+2})
