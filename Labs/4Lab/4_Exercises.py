@@ -1,37 +1,29 @@
 # Lab 4, Tyler Clough
+import algorithms
 import numpy as np
 import matplotlib.pyplot as plt
-from fixedpt import fixedpt
 
-def compute_order(pStar,pVec):
-#    Inputs:
-#        -p = fixed point
-#        -pVec = vector of all approximations from fixed point iteration
-#    Output:
-#        -a = alpha = order of convergence
-#        -l = lambda = rate
-    p = pStar*np.ones(len(pVec)-1)
-    diff1 = np.abs(pVec[1::]-p)
-    # top of order ratio
-    diff2 = np.abs(pVec[0:-1]-p)
-    # bottom of order ratio
-    fit = np.polyfit(np.log(diff2.flatten()),np.log(diff1.flatten()),1)
-    # finds coeffs for log(p_{n+1}-p) = log(l) + a*log(p_n-p)
+g = lambda x: (10/(x+4))**(1/2)
+x0 = 1.5
+tol = 10**(-10)
+Nmax = 100
+fixedP = 1.3652300134140976
 
-    print('the order of the equation from,')
-    print('log(|p_{n+t}-p|) = log(l) + a*log(p_n-p), is:')
-    print('lambda = ', str(np.exp(fit[1])))
-    print('alpha = ', str(fit[0]))
-    # print results
+def driver(opt):
+# prints results for each question
+    if opt == 2:
+        Q2()
+    elif opt == 3:
+        Q3()
+    Q4()
 
-    return [fit, diff1, diff2]
+    return 0
 
-def Q2_2():
+def Q2():
 # Question 2-2
 
     # (a)
-    g = lambda x: (10/(x+4))**(1/2)
-    [pStar, ier, results] = fixedpt(g,1.5,10**(-10),100)
+    [pStar,ier,results] = algorithms.fixedpt(g,x0,tol,Nmax)
     # calculates fixed point
     print('the error message is: ',ier)
     print('the fixed points is: ',pStar)
@@ -39,15 +31,21 @@ def Q2_2():
     print('--------------------------')
 
     # (b)
-    fixedP = 1.3652300134140976
-    [fit, diff1, diff2] = compute_order(fixedP,results)
-    print('--------------------------')
+    [fit, diff1, diff2] = algorithms.compute_order(fixedP,results)    
 
 def Q3():
 # Question 3
+    [pStar,ier,results] = algorithms.aitkensMethod(g,x0,tol,Nmax)
+    # implement Aiken's Method
+    print('the error message is: ',ier)
+    print('the fixed points is: ',pStar)
+    print('the number of iterations was: ',len(results))
+    print('--------------------------')
+    [fit, diff1, diff2] = algorithms.compute_order(fixedP,results)   
 
-    # 3-1
-    
+def Q4():
+# Question 4 - TBD
 
+    return 0
 
-Q2_2()
+driver(3)
