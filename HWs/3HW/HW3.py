@@ -116,13 +116,15 @@ def Q5():
     Xn = lambda x: -np.sin(2*x) + 5*x/4 - 3/4
     r0s = [-0.8, 0, 2, 3.5, 4.5];
     # initial guesses for each root
-    tol = 10**(-11)
+    tol = 0.5*10**(-10)
     # tolerance for 10 accurate digits
     print('Q5, (b)')
     print('-----------------------')
     for ii in range(len(r0s)):
         [xstar, ier, results] = fixedpt(Xn,r0s[ii],tol,100)
         print('root ', ii+1, ' is ~')
+        print(xstar)
+        [xstar, ier, results] = fixedpt(Xn,r0s[ii],10**(-20),100)
         print(xstar)
         print('-----------------------')
 
