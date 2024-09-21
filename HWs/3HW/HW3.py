@@ -15,11 +15,11 @@ def printBisection(astar, ier, count, opt):
 def Q1():
 # Question 1, (c)
     f = lambda x: 2*x - np.sin(x) - 1
-    tol = 10**(-9)
+    tol = 10**(-8)
     a = -1; b = 2;
     # interval from (a)
     [astar, ier, count] = bisection(f,a,b,tol)
-    printBisection(astar,ier, count) 
+    printBisection(astar,ier, count, 'Q1, (c)') 
 
     return 0
 
@@ -130,7 +130,4 @@ def Q5():
 
     return 0
 
-Q2()
-Q3()
-Q4()
-Q5()
+Q1()
