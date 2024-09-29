@@ -17,7 +17,7 @@ def bisection(f,a,b,tol):
     count = 0
     fa = f(a)
     fb = f(b);
-    if (np.sign(fa)*np.sign(fb) > 0):
+    if (fa*fb>0):
         ier = 1
         astar = a
         return [astar, ier, count]
@@ -25,7 +25,7 @@ def bisection(f,a,b,tol):
 #   Verify end points are not a root: 
     if (fa == 0):
         astar = a
-        ier = 0
+        ier =0
         return [astar, ier]
     if (fb ==0):
         astar = b
@@ -58,7 +58,7 @@ def bisection(f,a,b,tol):
             a = d
             fa = fd
         d = a + 0.5*(b-a)
-        count += 1S
+        count = count +1
       
     astar = d
     ier = 0

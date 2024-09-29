@@ -1,7 +1,7 @@
 # import libraries
 import numpy as np
 
-def bisection(f,a,b,tol):
+def bisection(f,a,b,tol,Nmax=100):
     
 #    Inputs:
 #     f,a,b       - function and endpoints of initial interval
@@ -17,7 +17,7 @@ def bisection(f,a,b,tol):
     count = 0
     fa = f(a)
     fb = f(b);
-    if (np.sign(fa)*np.sign(fb) > 0):
+    if (fa*fb>0):
         ier = 1
         astar = a
         return [astar, ier, count]
@@ -25,7 +25,7 @@ def bisection(f,a,b,tol):
 #   Verify end points are not a root: 
     if (fa == 0):
         astar = a
-        ier = 0
+        ier =0
         return [astar, ier]
     if (fb ==0):
         astar = b
@@ -37,28 +37,28 @@ def bisection(f,a,b,tol):
     # improvement from textbook
     #   -add small correction to a rather than 
     #       computing (a+b)/2 to avoid roundoff error
-    while (abs(d-a) > tol):
-    # put max on iterations
-        fd = f(d)
+    fd = f(d)
+    while (abs(fd-fa)/abs(fa) > tol):
         if (fd == 0):
         # found root
             astar = d
             ier = 0
             return [astar, ier, count]
-        if count > 100:
+        if count > Nmax:
             ier = 1
             astar = a
             return [astar, ier, count]
-        if (np.sign(fa)*np.sign(fb) == -1):
+        if (np.sign(fa)*np.sign(fd) == -1):
         # root in interval (a,d)
-        # uses np.sign() instead of fa*fb to avoid possible under/overflow
+        # uses np.sign() instead of fa*fd to avoid possible under/overflow
             b = d
         else:
         # root in interval (d,b)
             a = d
             fa = fd
         d = a + 0.5*(b-a)
-        count += 1S
+        fd = f(d)
+        count = count +1
       
     astar = d
     ier = 0
