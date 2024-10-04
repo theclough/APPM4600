@@ -94,6 +94,8 @@ def Q1():
     for j in range(50):
         [xstar,ier,ct] = lazyNewton(x0,tol,Nmax)
     elapsed = time.time()-t
+    for ii in range(5):
+        print()
     print('Question 1 (a) : Lazy Newton')
     print('------------------------------------------------')
     print('the approximate root is', xstar)
@@ -114,6 +116,8 @@ def Q1():
     print('number of iterations:', ct)
     print('it took on average', elapsed/50, '(s) over 50 trials')
     print('------------------------------------------------')
+    for ii in range(5):
+        print()
     
     return
 
