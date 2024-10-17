@@ -1,6 +1,6 @@
 # text file submission
 
 Linear Spline:
--very bad for N < 5
--Ok for N > 5: gets roughly linear part of 1/(1+(10x)^2) but not even close around 0 where plot gets quadraticish
+-very bad for N < 4
+-Ok for N > 7: gets roughly linear part of 1/(1+(10x)^2) but not even close around 0 where plot gets quadraticish
 -also, coverges to roughly same solution for larger N, i.e. by eyeball norm N = 7,8,9,10 are same spline solution
