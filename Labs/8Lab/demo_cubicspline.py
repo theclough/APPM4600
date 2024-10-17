@@ -5,19 +5,19 @@ from numpy.linalg import inv
 from numpy.linalg import norm
 
 
-def driver():
+def demoDriver3(f,a,b,Nint,Neval):
     
-    f = lambda x: np.exp(x)
-    a = 0
-    b = 1
+    # f = lambda x: np.exp(x)
+    # a = 0
+    # b = 1
     
-    ''' number of intervals'''
-    Nint = 3
+    # ''' number of intervals'''
+    # Nint = 3
     xint = np.linspace(a,b,Nint+1)
     yint = f(xint)
 
-    ''' create points you want to evaluate at'''
-    Neval = 100
+    # ''' create points you want to evaluate at'''
+    # Neval = 100
     xeval =  np.linspace(xint[0],xint[Nint],Neval+1)
 
 #   Create the coefficients for the natural spline    
@@ -51,7 +51,7 @@ def create_natural_spline(yint,xint,N):
     b = np.zeros(N+1)
 #  vector values
     h = np.zeros(N+1)
-    h[0] = xint[i]-xint[i-1]  
+    h[0] = xint[1]-xint[0]  
     for i in range(1,N):
        h[i] = xint[i+1] - xint[i]
        b[i] = (yint[i+1]-yint[i])/h[i] - (yint[i]-yint[i-1])/h[i-1]
@@ -60,17 +60,17 @@ def create_natural_spline(yint,xint,N):
     A = np.zeros((N+1,N+1))
 
 #  Invert A    
-    Ainv = 
+    Ainv = inv(A)
 
 # solver for M    
-    M  = 
+    M  = Ainv @ b
     
 #  Create the linear coefficients
     C = np.zeros(N)
     D = np.zeros(N)
     for j in range(N):
-       C[j] = # find the C coefficients
-       D[j] = # find the D coefficients
+       C[j] = b[j]/h[j] - h[j]/6.0*M[j]
+       D[j] = b[j+1]/h[j] - h[j]/6.0*M[j+1]
     return(M,C,D)
        
 def eval_local_spline(xeval,xi,xip,Mi,Mip,C,D):
@@ -80,7 +80,8 @@ def eval_local_spline(xeval,xi,xip,Mi,Mip,C,D):
 
     hi = xip-xi
    
-    yeval = 
+    yeval = ((xip-xeval)**3*Mi+(xeval-xi)**3*Mip)/(6.0*hi)+C*(xip-xeval)+D*(xeval-xi)
+    
     return yeval 
     
     
@@ -104,7 +105,3 @@ def  eval_cubic_spline(xeval,Neval,xint,Nint,M,C,D):
         yeval[ind] = yloc
 
     return(yeval)
-           
-driver()               
-
-

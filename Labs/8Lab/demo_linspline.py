@@ -5,18 +5,18 @@ from lineEval import lineEval
 import matplotlib.pyplot as plt
 
 
-def driver():
+def demoDriver(xeval,Neval,a,b,f,Nint):
     
-    f = lambda x: math.exp(x)
-    a = 0
-    b = 1
+    # f = lambda x: math.exp(x)
+    # a = 0
+    # b = 1
     
-    ''' create points you want to evaluate at'''
-    Neval = 100
-    xeval =  np.linspace(a,b,Neval)
+    # ''' create points you want to evaluate at'''
+    # Neval = 100
+    # xeval =  np.linspace(a,b,Neval)
     
-    ''' number of intervals'''
-    Nint = 10
+    # ''' number of intervals'''
+    # Nint = 10
     
     '''evaluate the linear spline'''
     yeval = eval_lin_spline(xeval,Neval,a,b,f,Nint)
@@ -29,12 +29,18 @@ def driver():
     plt.plot(xeval,fex,'g',label='exact')
     plt.plot(xeval,yeval,'b',label='linear spline')
     plt.legend()
+    plt.title(str(Nint)+' nodes')
+    if Nint == 8:
+        plt.savefig('Lab8_plot.png')
     plt.show()   
 
     err = abs(yeval-fex)
     plt.cla()
     plt.plot(xeval,err,'r',label='absolute error')
     plt.legend()
+    plt.title(str(Nint)+' nodes')
+    if Nint == 8:
+        plt.savefig('Lab8_error.png')
     plt.show()            
     
     
@@ -59,12 +65,8 @@ def  eval_lin_spline(xeval,Neval,a,b,f,Nint):
         fb1 = f(b1)
         
         for kk in range(Neval):
-           '''use your line evaluator to evaluate the lines at each of the points 
-           in the interval'''
-           yeval[kk] = lineEval(xeval[kk],(a1,fa1),(b1,fb1))
+            '''use your line evaluator to evaluate the lines at each of the points 
+            in the interval'''
+            yeval[kk] = lineEval(xeval[kk],(a1,fa1),(b1,fb1))
            # this line modified
     return yeval
-           
-if __name__ == '__main__':
-      # run the drivers only if this is called from the command line
-      driver()               
