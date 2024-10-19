@@ -1,4 +1,4 @@
-# HW7 / Lab7 repeat
+# HW7 / Lab7 repeat, Q1
 
 import numpy as np
 import numpy.linalg as la
@@ -9,7 +9,11 @@ np.set_printoptions(precision=10)
 def driver():
 # run the stuff
 
-    vanderMonde()
+    # Q1
+    a,b = (-1,1)
+    nEvals = 1001
+    for n in range(2,20):
+        vanderMonde(a,b,n,nEvals)
     
     return
 
@@ -20,8 +24,7 @@ def testVandy(fVals,p_x,iPts):
     print(fVals)
     return
 
-
-def vanderMonde():#(a,b,n,iPts,f):
+def vanderMonde(a,b,n,nEval):#(a,b,n,iPts,f):
 # constructs interpolation polynomial, p(x), using
 # VanderMonde matrix
 # Inputs:
@@ -33,9 +36,6 @@ def vanderMonde():#(a,b,n,iPts,f):
 #     pVals   : p(x) values
 
 # inital data
-    n = 3
-    a,b = (-1,1)
-    nEval = 1001
     xVals = np.linspace(a,b,nEval)
     f = lambda x: 1.0/(1.0 + (10.0*x)**2)
     iPts = np.linspace(a,b,n)
@@ -66,6 +66,7 @@ def vanderMonde():#(a,b,n,iPts,f):
     plt.plot(xVals,p(xVals),'b-',label='p(x)')
     plt.title('n = ' + str(n))
     plt.legend()
+    plt.savefig('vandyN_'+str(n))
     plt.show()
 
 driver()
